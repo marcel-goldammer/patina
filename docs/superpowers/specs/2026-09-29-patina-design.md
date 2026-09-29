@@ -120,16 +120,16 @@ Both fonts are OFL-1.1.
 
 ### 4.1 Semantic colors — start values
 
-These values come from the approved mockups. Where a mockup value failed WCAG in a pre-check, it is already adjusted and marked †. The contrast test (§6) is the final authority, and values may be tuned to pass it.
+These values come from the approved mockups. Where a mockup value failed WCAG in a pre-check, it is already adjusted and marked †. Near-duplicate values (≤ 3 RGB units apart) were merged into one primitive to keep the palette lean. The contrast test (§6) is the final authority, and values may be tuned to pass it.
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
 | `bg` | `#eeece8` | `#131211` | page background |
-| `surface` | `#f8f7f5` | `#1c1b19` | cards, inputs |
+| `surface` | `#f8f7f5` | `#1b1a18` | cards, inputs |
 | `surface-sunken` | `#e0ddd7` | `#0e0d0c` | secondary buttons, wells |
 | `border` | `#d6d2cb` | `#2c2a27` | decorative dividers (exempt from 3:1) |
-| `border-strong` | `#87827a` † | `#6b665e` † | control boundaries (inputs) — ≥ 3:1 |
-| `text` | `#1b1a18` | `#eeebe6` | body text |
+| `border-strong` | `#87827a` † | `#6e6a63` † | control boundaries (inputs) — ≥ 3:1 |
+| `text` | `#1b1a18` | `#eeece8` | body text |
 | `text-muted` | `#6e6a63` | `#9d988f` | secondary text |
 | `accent` | `#a07a38` † | `#cfa35a` | fills, progress bars (≥ 3:1 vs bg) |
 | `accent-text` | `#7f5f24` † | `#ddb877` | links, accent text (≥ 4.5:1) |
@@ -139,8 +139,8 @@ These values come from the approved mockups. Where a mockup value failed WCAG in
 | `on-danger` | `#f8f7f5` | `#131211` | text on danger button |
 | `success` / `-subtle` | `#426b3f` † / `#dfe8da` | `#8fbf86` / `#1d2a1b` | |
 | `danger` / `-subtle` | `#a83a3a` / `#f1d6d3` | `#e07a74` / `#361a18` | |
-| `warning` / `-subtle` | `#7d5a17` / `#efe3cb` | `#ddb877` / `#332a18` | ochre family, icon/text mandatory |
-| `info` / `-subtle` | `#57534d` / `#e2dfd9` | `#b8b3aa` / `#26241f` | neutral |
+| `warning` / `-subtle` | `#7f5f24` / `#efe3cb` | `#ddb877` / `#332a18` | ochre family, icon/text mandatory |
+| `info` / `-subtle` | `#57534d` / `#e0ddd7` | `#b8b3aa` / `#26241f` | neutral |
 | `focus` | `#7f5f24` | `#ddb877` | focus ring |
 | `shadow` | `#1b1a1826` | `#00000066` | shadow color (not contrast-tested) |
 
