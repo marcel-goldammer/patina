@@ -98,3 +98,25 @@ test('showcase only uses defined, non-primitive tokens', () => {
   const bad = [...referenced].filter((t) => !defined.has(t));
   assert.deepEqual(bad, []);
 });
+
+test('reset keeps native dialog/popover centering (margin: auto)', () => {
+  assert.match(read('base/reset.css'), /:where\(dialog, \[popover\]\)\s*\{\s*margin:\s*auto;\s*\}/);
+});
+
+test('reset uses no !important (layered !important would beat app CSS)', () => {
+  assert.doesNotMatch(read('base/reset.css'), /!important/);
+});
+
+test('headings use overflow-wrap: anywhere (fits flex/grid items without lang)', () => {
+  const rule = read('base/elements.css').match(/\n\s*h1, h2, h3 \{([^}]*)\}/);
+  assert.ok(rule, 'shared heading rule not found');
+  assert.match(rule[1], /overflow-wrap:\s*anywhere/);
+});
+
+test('button-like inputs are excluded from the text-field rule', () => {
+  const sel = read('base/elements.css').match(/:where\(input:not\(([^)]*)\)/);
+  assert.ok(sel, 'text input rule not found');
+  for (const type of ['submit', 'button', 'reset', 'image', 'hidden']) {
+    assert.ok(sel[1].includes(`[type="${type}"]`), `missing ${type}`);
+  }
+});

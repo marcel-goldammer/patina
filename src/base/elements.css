@@ -10,7 +10,7 @@
   }
 
   /* Typography */
-  h1, h2, h3 { font-weight: var(--pt-font-weight-semibold); letter-spacing: -0.01em; hyphens: auto; }
+  h1, h2, h3 { font-weight: var(--pt-font-weight-semibold); letter-spacing: -0.01em; hyphens: auto; overflow-wrap: anywhere; }
   h1 { font-size: var(--pt-font-size-xl); line-height: var(--pt-line-height-tight); font-weight: var(--pt-font-weight-bold); letter-spacing: -0.02em; }
   h2 { font-size: var(--pt-font-size-lg); line-height: var(--pt-line-height-snug); }
   h3 { font-size: var(--pt-font-size-md); line-height: var(--pt-line-height-snug); }
@@ -73,7 +73,7 @@
     font-size: var(--pt-font-size-md);
     font-weight: var(--pt-font-weight-regular);
   }
-  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]), select, textarea) {
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"], [type="hidden"]), select, textarea) {
     display: block;
     width: 100%;
     min-height: 44px;

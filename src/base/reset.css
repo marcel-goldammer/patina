@@ -2,6 +2,7 @@
 @layer patina.reset {
   *, *::before, *::after { box-sizing: border-box; }
   * { margin: 0; }
+  :where(dialog, [popover]) { margin: auto; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { min-height: 100dvh; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
   img, picture, video, canvas, svg { display: block; max-width: 100%; }
@@ -9,13 +10,4 @@
   p, h1, h2, h3, h4, h5, h6, li, td, th { overflow-wrap: break-word; }
   h1, h2, h3 { text-wrap: balance; }
   p { text-wrap: pretty; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
 }
