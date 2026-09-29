@@ -86,7 +86,7 @@ npm i github:marcel-goldammer/patina#v0.1.0
 
 Vendored cuts:
 - Figtree: 400, 500, 600, 700, 400-italic
-- Maple Mono: 400, 500, 400-italic
+- Maple Mono: 400, 500, 400-italic (only a `latin` subset exists upstream; it covers German umlauts)
 - All with `font-display: swap`.
 
 Both fonts are OFL-1.1.
@@ -103,9 +103,20 @@ Both fonts are OFL-1.1.
 **Prefix:** `--pt-`.
 
 **Theme mechanism:**
-- Light is the default on `:root`.
-- Dark via `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { … } }` and via `:root[data-theme="dark"]`.
-- `color-scheme: light dark` is set so native controls follow the theme.
+- Each semantic color is declared **once** with CSS `light-dark(<light>, <dark>)`. The dark values are not duplicated into a second block.
+- `:root { color-scheme: light dark }` follows the OS setting.
+- `:root[data-theme="light"]` / `[data-theme="dark"]` force a theme by setting `color-scheme`.
+- Native controls follow the theme automatically.
+- Requires `light-dark()`: Baseline 2024 (Safari/iOS 17.5+, Chrome 123+, Firefox 120+). Acceptable for new apps from 2026 on.
+
+**File placement:**
+- `primitives.css` holds the color palettes only.
+- All app-facing tokens live in `semantic.css`: colors, fonts, sizes, spacing, radius, shadow, motion.
+
+**Cascade layers:**
+- Base styles are wrapped in `@layer patina.reset` and `@layer patina.base`.
+- Unlayered app CSS therefore always wins, regardless of specificity.
+- Tokens stay unlayered.
 
 ### 4.1 Semantic colors — start values
 
@@ -125,11 +136,13 @@ These values come from the approved mockups. Where a mockup value failed WCAG in
 | `accent-subtle` | `#efe3cb` | `#332a18` | chip / highlight background |
 | `primary-bg` | `#1b1a18` | `#cfa35a` | primary button fill |
 | `primary-fg` | `#d9ac5c` | `#131211` | primary button text |
+| `on-danger` | `#f8f7f5` | `#131211` | text on danger button |
 | `success` / `-subtle` | `#426b3f` † / `#dfe8da` | `#8fbf86` / `#1d2a1b` | |
 | `danger` / `-subtle` | `#a83a3a` / `#f1d6d3` | `#e07a74` / `#361a18` | |
 | `warning` / `-subtle` | `#7d5a17` / `#efe3cb` | `#ddb877` / `#332a18` | ochre family, icon/text mandatory |
 | `info` / `-subtle` | `#57534d` / `#e2dfd9` | `#b8b3aa` / `#26241f` | neutral |
 | `focus` | `#7f5f24` | `#ddb877` | focus ring |
+| `shadow` | `#1b1a1826` | `#00000066` | shadow color (not contrast-tested) |
 
 Pre-check findings that led to the † adjustments:
 - Light `accent-text` (`#8c6a2c`: 4.22) failed AA.
@@ -175,7 +188,7 @@ Native elements only:
 **Contrast test (`npm test`)**
 - Zero dependencies, uses `node:test`. Written TDD-first.
 - Parses `semantic.css`, resolves `var(--pt-…)` references to primitives, and checks a fixed list of pairs for **both** themes:
-  - Text pairs ≥ 4.5:1 — e.g. `text`/`bg`, `text`/`surface`, `text-muted`/`bg`, `text-muted`/`surface`, `accent-text`/`bg`, `accent-text`/`surface`, `primary-fg`/`primary-bg`, each status on its `-subtle` and on `surface`
+  - Text pairs ≥ 4.5:1 — e.g. `text`/`bg`, `text`/`surface`, `text-muted`/`bg`, `text-muted`/`surface`, `accent-text`/`bg`, `accent-text`/`surface`, `primary-fg`/`primary-bg`, `on-danger`/`danger`, `accent-text`/`accent-subtle`, `text`/`surface-sunken`, each status on its `-subtle` and on `surface`
   - UI pairs ≥ 3:1 — e.g. `accent`/`bg`, `border-strong`/`bg`, `border-strong`/`surface`, `focus`/`bg`
 - A failing pair fails the build.
 
