@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>patina showcase</title>
+  <link rel="stylesheet" href="../src/patina.css">
+  <style>
+    /* Showcase-only layout (unlayered, uses semantic tokens only) */
+    main { max-width: 760px; margin: 0 auto; padding: var(--pt-space-6) var(--pt-space-4) var(--pt-space-8); }
+    section { margin-block: var(--pt-space-7); }
+    .bar { display: flex; gap: var(--pt-space-2); flex-wrap: wrap; align-items: center; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--pt-space-3); }
+    .swatch { border: 1px solid var(--pt-color-border); border-radius: var(--pt-radius-md); overflow: hidden; background: var(--pt-color-surface); }
+    .swatch div { height: 56px; border-bottom: 1px solid var(--pt-color-border); }
+    .swatch span { display: block; padding: var(--pt-space-2); font-size: var(--pt-font-size-xs); }
+    .scale-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--pt-space-1) var(--pt-space-3); margin-block: var(--pt-space-2); }
+    .scale-row code { min-width: 150px; }
+    .box { background: var(--pt-color-accent); height: 16px; }
+    .radius { width: 64px; height: 40px; background: var(--pt-color-surface-sunken); border: 1px solid var(--pt-color-border-strong); }
+    .card { background: var(--pt-color-surface); border: 1px solid var(--pt-color-border); border-radius: var(--pt-radius-md); padding: var(--pt-space-4); }
+    .stack > * + * { margin-block-start: var(--pt-space-3); }
+    [aria-pressed="true"] { outline: 2px solid var(--pt-color-focus); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+<main>
+  <p class="pt-label">patina · v0.1.0</p>
+  <h1>Showcase</h1>
+  <p>Alle Tokens und gestylten Elemente. Theme umschalten, um beide Varianten zu prüfen.</p>
+  <div class="bar" role="group" aria-label="Theme">
+    <button type="button" data-theme-choice="auto">Auto</button>
+    <button type="button" data-theme-choice="light">Light</button>
+    <button type="button" data-theme-choice="dark">Dark</button>
+  </div>
+
+  <section>
+    <h2>Farben</h2>
+    <div class="grid" id="colors"></div>
+  </section>
+
+  <section>
+    <h2>Typografie</h2>
+    <h1>Benachrichtigungseinstellungen und Trainingsplanung</h1>
+    <h2>Überschrift zweiter Ebene</h2>
+    <h3>Überschrift dritter Ebene</h3>
+    <p>Fließtext in Figtree. Diese Woche steht die letzte intensive Belastung vor dem Tapering an. Der Schwerpunkt liegt auf der <a href="#">Laktatschwelle</a>, ergänzt durch einen <strong>längeren</strong>, <em>ruhigen</em> Lauf. Inline-Code: <code>--pt-color-accent</code>, Taste <kbd>⌘K</kbd>. <small>Kleintext.</small></p>
+    <p><span class="pt-label">Label</span> · <span class="pt-num">42.5 km · 4:12/km · 1:48:00</span></p>
+    <p class="pt-note">Locker bleiben — der Long Run ist kein Test.</p>
+    <ul><li>Listenpunkt eins</li><li>Listenpunkt zwei</li></ul>
+    <pre><code>@import "patina/src/patina.css";</code></pre>
+    <hr>
+    <div id="type-scale"></div>
+  </section>
+
+  <section>
+    <h2>Spacing, Radius, Schatten</h2>
+    <div id="space-scale"></div>
+    <div class="bar" id="radius-scale"></div>
+    <div class="bar" style="margin-block-start: var(--pt-space-5)">
+      <div class="card" style="box-shadow: var(--pt-shadow-1)">shadow-1</div>
+      <div class="card" style="box-shadow: var(--pt-shadow-2)">shadow-2</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Buttons</h2>
+    <div class="bar">
+      <button type="button" data-variant="primary">Speichern</button>
+      <button type="button">Abbrechen</button>
+      <button type="button" data-variant="danger">Löschen</button>
+      <button type="button" data-variant="primary" disabled>Deaktiviert</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Formulare</h2>
+    <form class="stack" onsubmit="return false">
+      <div><label for="f-pace">Ziel-Pace</label><input id="f-pace" class="pt-num" value="4:15" inputmode="numeric"></div>
+      <div><label for="f-bad">Ungültig</label><input id="f-bad" class="pt-num" value="4:7x" aria-invalid="true" aria-describedby="f-bad-err"><small id="f-bad-err" style="color: var(--pt-color-danger)">✕ Ungültiges Pace-Format (m:ss)</small></div>
+      <div><label for="f-sel">Sportart</label><select id="f-sel"><option>Laufen</option><option>Rad</option></select></div>
+      <div><label for="f-note">Notiz</label><textarea id="f-note" placeholder="Wie hat es sich angefühlt?"></textarea></div>
+      <div><label for="f-dis">Deaktiviert</label><input id="f-dis" value="gesperrt" disabled></div>
+      <fieldset>
+        <legend>Optionen</legend>
+        <label><input type="checkbox" checked> Erinnerung aktiv</label><br>
+        <label><input type="radio" name="r" checked> Täglich</label>
+        <label><input type="radio" name="r"> Wöchentlich</label>
+      </fieldset>
+    </form>
+  </section>
+
+  <section>
+    <h2>Tabelle</h2>
+    <table>
+      <thead><tr><th>Einheit</th><th>Distanz</th><th>Pace</th></tr></thead>
+      <tbody>
+        <tr><td>Regeneration</td><td class="pt-num">8.0 km</td><td class="pt-num">5:35</td></tr>
+        <tr><td>Schwelle 3×10'</td><td class="pt-num">12.5 km</td><td class="pt-num">4:12</td></tr>
+        <tr><td>Long Run</td><td class="pt-num">24.0 km</td><td class="pt-num">5:05</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+  const COLORS = ['bg', 'surface', 'surface-sunken', 'border', 'border-strong', 'text', 'text-muted',
+    'accent', 'accent-text', 'accent-subtle', 'primary-bg', 'primary-fg', 'on-danger',
+    'success', 'success-subtle', 'danger', 'danger-subtle', 'warning', 'warning-subtle',
+    'info', 'info-subtle', 'focus'];
+  const SIZES = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
+  const SPACES = [1, 2, 3, 4, 5, 6, 7, 8];
+  const RADII = ['sm', 'md', 'lg', 'full'];
+
+  document.getElementById('colors').innerHTML = COLORS.map((c) =>
+    `<div class="swatch"><div style="background: var(--pt-color-${c})"></div><span class="pt-num">${c}</span></div>`).join('');
+  document.getElementById('type-scale').innerHTML = SIZES.map((s) =>
+    `<div class="scale-row"><code>font-size-${s}</code><span style="font-size: var(--pt-font-size-${s})">Aufbauwoche 42.5</span></div>`).join('');
+  document.getElementById('space-scale').innerHTML = SPACES.map((s) =>
+    `<div class="scale-row"><code>space-${s}</code><div class="box" style="width: var(--pt-space-${s})"></div></div>`).join('');
+  document.getElementById('radius-scale').innerHTML = RADII.map((r) =>
+    `<div class="stack"><div class="radius" style="border-radius: var(--pt-radius-${r})"></div><code>${r}</code></div>`).join('');
+
+  const root = document.documentElement;
+  function applyTheme(choice) {
+    if (choice === 'auto') delete root.dataset.theme; else root.dataset.theme = choice;
+    document.querySelectorAll('[data-theme-choice]').forEach((b) =>
+      b.setAttribute('aria-pressed', String(b.dataset.themeChoice === choice)));
+    try { localStorage.setItem('pt-theme', choice); } catch {}
+  }
+  let saved = 'auto';
+  try { saved = localStorage.getItem('pt-theme') || 'auto'; } catch {}
+  applyTheme(saved);
+  document.querySelectorAll('[data-theme-choice]').forEach((b) =>
+    b.addEventListener('click', () => applyTheme(b.dataset.themeChoice)));
+</script>
+</body>
+</html>

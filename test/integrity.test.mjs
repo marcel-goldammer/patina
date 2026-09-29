@@ -89,3 +89,12 @@ test('npm pack ships entry points and fonts', () => {
     assert.ok(files.includes(f), `missing from package: ${f}`);
   }
 });
+
+test('showcase only uses defined, non-primitive tokens', () => {
+  const html = readFileSync(resolve(root, 'showcase/index.html'), 'utf8');
+  const defined = definedTokens(read('tokens/semantic.css'));
+  // Skip template-literal names like `--pt-color-${c}` (lookahead rejects partial matches).
+  const referenced = new Set([...html.matchAll(/(--pt-[a-z0-9-]+)(?![a-z0-9-]|\$)/g)].map((m) => m[1]));
+  const bad = [...referenced].filter((t) => !defined.has(t));
+  assert.deepEqual(bad, []);
+});
