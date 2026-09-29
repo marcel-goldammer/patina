@@ -1,0 +1,7 @@
+/* patina — everything. Layer order first: app CSS (unlayered) always wins. */
+@layer patina.reset, patina.base;
+@import "./fonts.css";
+@import "./tokens/primitives.css";
+@import "./tokens/semantic.css";
+@import "./base/reset.css";
+@import "./base/elements.css";
