@@ -1,0 +1,82 @@
+/* patina — semantic tokens. The only token layer apps may use.
+   Colors: light-dark(<light>, <dark>), resolved via color-scheme. */
+:root {
+  color-scheme: light dark;
+
+  --pt-color-bg: light-dark(var(--pt-stone-100), var(--pt-stone-950));
+  --pt-color-surface: light-dark(var(--pt-stone-50), var(--pt-stone-900));
+  --pt-color-surface-sunken: light-dark(var(--pt-stone-200), var(--pt-stone-975));
+  --pt-color-border: light-dark(var(--pt-stone-300), var(--pt-stone-800));
+  --pt-color-border-strong: light-dark(var(--pt-stone-500), var(--pt-stone-600));
+  --pt-color-text: light-dark(var(--pt-stone-900), var(--pt-stone-100));
+  --pt-color-text-muted: light-dark(var(--pt-stone-600), var(--pt-stone-450));
+
+  --pt-color-accent: light-dark(var(--pt-ochre-600), var(--pt-ochre-500));
+  --pt-color-accent-text: light-dark(var(--pt-ochre-700), var(--pt-ochre-300));
+  --pt-color-accent-subtle: light-dark(var(--pt-ochre-100), var(--pt-ochre-900));
+  --pt-color-primary-bg: light-dark(var(--pt-stone-900), var(--pt-ochre-500));
+  --pt-color-primary-fg: light-dark(var(--pt-ochre-400), var(--pt-stone-950));
+  --pt-color-on-danger: light-dark(var(--pt-stone-50), var(--pt-stone-950));
+
+  --pt-color-success: light-dark(var(--pt-green-700), var(--pt-green-300));
+  --pt-color-success-subtle: light-dark(var(--pt-green-100), var(--pt-green-900));
+  --pt-color-danger: light-dark(var(--pt-red-700), var(--pt-red-300));
+  --pt-color-danger-subtle: light-dark(var(--pt-red-100), var(--pt-red-900));
+  --pt-color-warning: light-dark(var(--pt-ochre-700), var(--pt-ochre-300));
+  --pt-color-warning-subtle: light-dark(var(--pt-ochre-100), var(--pt-ochre-900));
+  --pt-color-info: light-dark(var(--pt-stone-700), var(--pt-stone-400));
+  --pt-color-info-subtle: light-dark(var(--pt-stone-200), var(--pt-stone-850));
+
+  --pt-color-focus: light-dark(var(--pt-ochre-700), var(--pt-ochre-300));
+  --pt-color-shadow: light-dark(#1b1a1826, #00000066);
+
+  --pt-font-sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --pt-font-mono: "Maple Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --pt-font-size-xs: 0.75rem;
+  --pt-font-size-sm: 0.875rem;
+  --pt-font-size-md: 1rem;
+  --pt-font-size-lg: 1.25rem;
+  --pt-font-size-xl: 1.75rem;
+  --pt-font-size-2xl: 2.25rem;
+
+  --pt-font-weight-regular: 400;
+  --pt-font-weight-medium: 500;
+  --pt-font-weight-semibold: 600;
+  --pt-font-weight-bold: 700;
+
+  --pt-line-height-tight: 1.15;
+  --pt-line-height-snug: 1.3;
+  --pt-line-height-normal: 1.55;
+
+  --pt-space-1: 0.25rem;
+  --pt-space-2: 0.5rem;
+  --pt-space-3: 0.75rem;
+  --pt-space-4: 1rem;
+  --pt-space-5: 1.5rem;
+  --pt-space-6: 2rem;
+  --pt-space-7: 3rem;
+  --pt-space-8: 4rem;
+
+  --pt-radius-sm: 4px;
+  --pt-radius-md: 6px;
+  --pt-radius-lg: 12px;
+  --pt-radius-full: 9999px;
+
+  --pt-shadow-1: 0 2px 8px var(--pt-color-shadow);
+  --pt-shadow-2: 0 8px 32px var(--pt-color-shadow);
+
+  --pt-duration-fast: 120ms;
+  --pt-duration-base: 200ms;
+  --pt-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pt-duration-fast: 0ms;
+    --pt-duration-base: 0ms;
+  }
+}

@@ -1,0 +1,36 @@
+/* patina — primitive color palettes.
+   Internal: apps must use the semantic tokens in semantic.css. */
+:root {
+  --pt-stone-50: #f8f7f5;
+  --pt-stone-100: #eeece8;
+  --pt-stone-200: #e0ddd7;
+  --pt-stone-300: #d6d2cb;
+  --pt-stone-400: #b8b3aa;
+  --pt-stone-450: #9d988f;
+  --pt-stone-500: #87827a;
+  --pt-stone-600: #6e6a63;
+  --pt-stone-700: #57534d;
+  --pt-stone-800: #2c2a27;
+  --pt-stone-850: #26241f;
+  --pt-stone-900: #1b1a18;
+  --pt-stone-950: #131211;
+  --pt-stone-975: #0e0d0c;
+
+  --pt-ochre-100: #efe3cb;
+  --pt-ochre-300: #ddb877;
+  --pt-ochre-400: #d9ac5c;
+  --pt-ochre-500: #cfa35a;
+  --pt-ochre-600: #a07a38;
+  --pt-ochre-700: #7f5f24;
+  --pt-ochre-900: #332a18;
+
+  --pt-green-100: #dfe8da;
+  --pt-green-300: #8fbf86;
+  --pt-green-700: #426b3f;
+  --pt-green-900: #1d2a1b;
+
+  --pt-red-100: #f1d6d3;
+  --pt-red-300: #e07a74;
+  --pt-red-700: #a83a3a;
+  --pt-red-900: #361a18;
+}
